@@ -1,0 +1,44 @@
+alias: Jellyfin Now Showing Display
+description: >
+  Switches the Fully Kiosk display to the cinema marquee page when Jellyfin
+  starts playing, and returns to the dashboard when playback ends.
+trigger:
+  - platform: state
+    entity_id: media_player.jellyfin
+    to: playing
+    id: playing
+  - platform: state
+    entity_id: media_player.jellyfin
+    to: idle
+    id: idle
+  - platform: state
+    entity_id: media_player.jellyfin
+    to: "off"
+    id: idle
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: playing
+        sequence:
+          - delay:
+              seconds: 5
+          - service: fully_kiosk.load_url
+            data:
+              url: >-
+                http://YOUR_HA_IP:8123/local/jellyfin-now-showing/now_showing.html?ha_url=http://YOUR_HA_IP:8123&token=YOUR_LONG_LIVED_ACCESS_TOKEN
+            target:
+              device_id: YOUR_FULLY_KIOSK_DEVICE_ID
+      - conditions:
+          - condition: trigger
+            id: idle
+        sequence:
+          - delay:
+              seconds: 10
+          - service: fully_kiosk.load_url
+            data:
+              url: http://YOUR_HA_IP:8123/lovelace/default_view
+            target:
+              device_id: YOUR_FULLY_KIOSK_DEVICE_ID
+mode: restart
