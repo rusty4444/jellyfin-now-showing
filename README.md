@@ -147,6 +147,7 @@ If you're using a landscape/widescreen display instead of a portrait tablet, set
 - [jellyfin-recently-added-card](https://github.com/rusty4444/jellyfin-recently-added-card) — a Lovelace card showing recently added Jellyfin media
 - [plex-now-showing](https://github.com/rusty4444/plex-now-showing) — the Plex version of this project
 - [kodi-now-showing](https://github.com/rusty4444/kodi-now-showing) — the Kodi version of this project
+- [emby-recently-added-card](https://github.com/rusty4444/emby-recently-added-card) / [emby-now-showing](https://github.com/rusty4444/emby-now-showing) — Emby versions
 
 ---
 
